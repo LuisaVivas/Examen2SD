@@ -17,7 +17,7 @@ Para la realización del aprovisionamiento de un ambiente compuesto por los sigu
 - Tres Servidores web.
 
 Se aplicó los conceptos vistos en clase, por tanto, se hizo uso de Docker para proveer el ambiente requerido. 
-1. 
+
 # Balanceo de carga:
 
 Para el balanceador de carga como ya hemos mencionado antes, se hizo uso de nginx, es una aplicación que es capaz de hacer funciones de balanceo de carga entre varios servidores de aplicaciones, por tanto, siguiendo a guía brindada por nginx.org pasamos a instalarlo y configurarlo de la siguiente manera: 
