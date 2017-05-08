@@ -126,6 +126,7 @@ Este archivo permite copiar un archivo desde el ordenador central en el contened
 ```
 
 3.	Escriba el archivo docker-compose.yml necesario para el despliegue de la infraestructura
+
 ```
 version: '2'
  
@@ -175,6 +176,8 @@ volumes:
     
     nginx_volumes:
     ```
+    
+    
 En este archivo, se crea los 3 servidores web y el balanceador de carga.  Por tanto, lo servidores web utilizan el Dockerfile del contexto web1 ,web2, web3 definido para cada uno y el balanceador,  el Dockerfile del contexto nginx. Además de esto, se define el puerto 5000 para los contenedores web y el mapeo del puerto 8080:80 por donde recibirá las peticiones. 
 Respecto a los volúmenes, se debe crear dos volúmenes y asignarlos respectivamente. Un volumen encargado para el balanceador de carga y otro que es compartido para el servicio web.
 
