@@ -23,17 +23,17 @@ Se aplicó los conceptos vistos en clase, por tanto, se hizo uso de Docker para 
 Para el balanceador de carga como ya hemos mencionado antes, se hizo uso de nginx, es una aplicación que es capaz de hacer funciones de balanceo de carga entre varios servidores de aplicaciones, por tanto, siguiendo a guía brindada por nginx.org pasamos a instalarlo y configurarlo de la siguiente manera: 
 
 •	Definir el puerto por el cual esté recibirá las peticiones y las redirige hacia las maquinas web, el cual será el puerto 8080, además de esto el puerto debe abrirse y dar los permisos necesarios para el cortafuego: 
-```
+```ruby
 Iptables –I INPUT 5 –p tcp –m state – new tcp –dport 8080 –j ACCEPT
 ```
 
 •	Se realiza la instalación de Nginx: 
-```
+`
 Sudo yum install nginx
-```
+`
 
 •	Nginx tiene un archivo de configuración en la ruta /etc/nginx/nginx.conf, este archivo ya contiene una configuración la cual no será útil para nuestra solución, por tanto, se debe modificar este archivo de la siguiente manera:
-```
+```ruby
 worker_processes 4;
 
 events { worker_connections 1024; }
@@ -66,20 +66,20 @@ El anterior archivo muestra cómo se definen los servidores a los cuales el bala
 
 # Web: 
 Se instala el servicio web de apache
-```
+`
 Sudo apt install httpd –y
-```
+`
 Y se abre el puerto por donde recibe las peticiones http que será el 80. 
-```
+`
 iptables -I INPUT 5 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
-```
+`
 
 2.	Escriba los archivos Dockerfile para cada uno de los servicios solicitados junto con los archivos fuente necesarios:
 
 # Balanceador de caga: 
 
 Para el balanceador de carga tenemos un Dockerfile, que se encarga de reemplazar el archivo de configuración del servicio nginx y reiniciar el servicio con la configuración definida en el nginx.conf, que se mencionó en el punto anterior, cuyo fin es mapear los servidores web que atenderán las peticiones.
-```
+```ruby
 FROM nginx
 
 MAINTAINER luisamaria556@gmail.com
@@ -102,7 +102,7 @@ CMD service nginx start
 Se tienen tres servidores web y cada uno contiene dentro de las respectivas carpetas un Dockerfile y el index.html, este último se encarga de mostrar la vista de cada uno de los servidores: 
 
 Dockerfile: 
-```
+```ruby
 FROM httpd
 
 MAINTAINER luisamaria556@gmail.com
@@ -110,7 +110,7 @@ MAINTAINER luisamaria556@gmail.com
 ADD index.html /usr/local/apache2/htdocs/index.html
 ```
 Este archivo permite copiar un archivo desde el ordenador central en el contenedor y ubicar el archivo index.html ubicado dentro de la carpeta web, que contiene la vista se cada servidor: 
-```
+```ruby
 <!DOCTYPE html>
 <html>
 <head>
@@ -184,13 +184,13 @@ Respecto a los volúmenes, se debe crear dos volúmenes y asignarlos respectivam
 4.	Incluya evidencias que muestran el funcionamiento de lo solicitado: 
 
 Para comprobar el correcto funcionamiento del proyecto, se debe construir el contenedor primero:
-```
+`
 docker-compose build
-```
+`
 Seguido se agrega e inicia el contenedor: 
-```
+`
 docker-compose up
-```
+`
 
 5. Publicar en un repositorio de github los archivos para el aprovisionamiento junto con un archivo de extensión .md donde explique brevemente como realizar el aprovisionamiento.
 
@@ -202,10 +202,10 @@ https://github.com/LuisaVivas/Examen2SD
 7. Documente algunos de los problemas encontrados y las acciones efectuadas para su solución al aprovisionar la infraestructura y aplicaciones
 
 Dentro de la solución del aprovisionamiento compuesto, cuando el proyecto se subía el proyecto, no lo haca debido a que mandaba una excepción que mostraba como si ya se estuviera usando los puertos, por tanto fue necesario borrar las imágenes y los contenedores creados, con los siguientes comandos: 
+`
+docker rm –f $(docker ps -q)` elimina todos los contenedores 
 
-docker rm –f $(docker ps -q) elimina todos los contenedores 
-
-docker rmi $(docker images -q) elimina todas las imágenes 
+`docker rmi $(docker images -q)` elimina todas las imágenes 
 
 
 
