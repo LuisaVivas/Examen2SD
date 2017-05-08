@@ -190,9 +190,9 @@ docker-compose up
 ```
 
 5. Publicar en un repositorio de github los archivos para el aprovisionamiento junto con un archivo de extensión .md donde explique brevemente como realizar el aprovisionamiento.
-```
+
 https://github.com/LuisaVivas/Examen2SD 
-```
+
 
 6. Evidencias se encuentran en el documento pdf. 
 
