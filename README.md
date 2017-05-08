@@ -1,9 +1,13 @@
 # Examen2SD
 
 Luisa María Vivas Mayor
+
 Cód: A00276556
+
 Curso: Sistemas Distribuidos
+
 Tema: Automatización de infraestructura (Docker)
+
 Correo:luisa.vivas@correo.icesi.edu.co
 
 
