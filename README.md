@@ -199,8 +199,19 @@ https://github.com/LuisaVivas/Examen2SD
 7. Documente algunos de los problemas encontrados y las acciones efectuadas para su solución al aprovisionar la infraestructura y aplicaciones
 
 Dentro de la solución del aprovisionamiento compuesto, cuando el proyecto se subía el proyecto, no lo haca debido a que mandaba una excepción que mostraba como si ya se estuviera usando los puertos, por tanto fue necesario borrar las imágenes y los contenedores creados, con los siguientes comandos: 
-```
+
 docker rm –f $(docker ps -q) elimina todos los contenedores 
+
 docker rmi $(docker images -q) elimina todas las imágenes 
-```
+
+
+
+# Referencias 
+
+- https://www.digitalocean.com/community/tutorials/docker-explained-how-to-containerize-and-use-nginx-as-a-proxy
+- https://docs.docker.com/
+- https://github.com/ICESI/ds-docker
+
+
+
 
