@@ -29,7 +29,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - nginx_volumes:/nginx_volumes
+      - nginx_volumes:/etc/nginx/
 
 volumes:
     web_volumes:
