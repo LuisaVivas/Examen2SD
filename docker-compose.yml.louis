@@ -5,22 +5,28 @@ services:
     build:
       context:  ./web
       dockerfile: Dockerfile
+    expose:
+      - "5000"
     volumes:
-      - web_volumes:/usr/local/apache2/htdocs
+      - web_volumes:/web_volumes
 
   web1:
     build:
       context:  ./web1
       dockerfile: Dockerfile
+    expose:
+      - "5000"
     volumes:
-      - web_volumes:/usr/local/apache2/htdocs
+      - web_volumes:/web_volumes
 
   web2:
     build:
       context:  ./web2
       dockerfile: Dockerfile
+    expose:
+      - "5000"
     volumes:
-      - web_volumes:/usr/local/apache2/htdocs
+      - web_volumes:/web_volumes
  
   proxy:
     build:
@@ -28,10 +34,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    links:
+      - web
+      - web1
+      - web2
     volumes:
       - nginx_volumes:/nginx_volumes
 
 volumes:
     web_volumes:
-
+    
     nginx_volumes:

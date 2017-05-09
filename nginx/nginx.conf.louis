@@ -6,9 +6,9 @@ http {
     sendfile on;
  
     upstream app_servers {
-        server web;
-        server web1;
-        server web2;
+        server web:80;
+        server web1:80;
+        server web2:80;
     }
  
     server {
