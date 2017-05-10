@@ -129,52 +129,42 @@ Este archivo permite copiar un archivo desde el ordenador central en el contened
 
 ```ruby
 version: '2'
- 
+ 
 services:
-  web:
-    build:
-      context:  ./web
-      dockerfile: Dockerfile
-    expose:
-      - "5000"
-    volumes:
-      - web_volumes:/web_volumes
+  web:
+    build:
+      context:  ./web
+      dockerfile: Dockerfile
+    volumes:
+      - web_volumes:/usr/local/apache2/htdocs
 
-  web1:
-    build:
-      context:  ./web1
-      dockerfile: Dockerfile
-    expose:
-      - "5000"
-    volumes:
-      - web_volumes:/web_volumes
+  web1:
+    build:
+      context:  ./web1
+      dockerfile: Dockerfile
+    volumes:
+      - web_volumes:/usr/local/apache2/htdocs
 
-  web2:
-    build:
-      context:  ./web2
-      dockerfile: Dockerfile
-    expose:
-      - "5000"
-    volumes:
-      - web_volumes:/web_volumes
- 
-  proxy:
-    build:
-      context:  ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    links:
-      - web
-      - web1
-      - web2
-    volumes:
-      - nginx_volumes:/nginx_volumes
+  web2:
+    build:
+      context:  ./web2
+      dockerfile: Dockerfile
+    volumes:
+      - web_volumes:/usr/local/apache2/htdocs
+ 
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - nginx_volumes:/etc/nginx/
 
 volumes:
-    web_volumes:
-    
-    nginx_volumes:
+    web_volumes:
+
+    nginx_volumes:
 ```
     
     
